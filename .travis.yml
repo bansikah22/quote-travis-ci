@@ -1,9 +1,46 @@
 language: java
 jdk: openjdk21
 
-script:
-  - cd quote-service-travis-ci
-  - ./mvnw clean install
+dist: jammy
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: Backend
+      name: "Build & Test Spring Boot Backend"
+      script:
+        - cd quote-service-travis-ci
+        - ./mvnw clean install -B
+
+    - stage: Frontend
+      name: "Build & Test React Frontend"
+      language: node_js
+      node_js: 20
+      before_script:
+        - cd quote-web
+        - npm install
+      script:
+        - npm run build
+        - npm run test -- --watchAll=false
+
+    - stage: Docker
+      name: "Build Docker Images"
+      script:
+        # Build backend image (Spring Boot)
+        - docker build -t quote-backend:ci ./quote-service-travis-ci
+        # Build frontend image (React + Nginx)
+        - docker build -t quote-frontend:ci ./quote-web
 
 notifications:
-  email: false
+  email:
+    recipients:
+      - tandapnoelbansikah@gmail.com
+    on_success: never
+    on_failure: always
+
+cache:
+  directories:
+    - $HOME/.m2
+    - quote-web/node_modules

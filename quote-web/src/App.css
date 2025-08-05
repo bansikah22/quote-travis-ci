@@ -1,0 +1,60 @@
+/* General page styling */
+.app-container {
+  max-width: 600px;
+  margin: 5rem auto;
+  padding: 2rem;
+  text-align: center;
+  background: #f9f9fb;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Title */
+.app-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+/* Button */
+.quote-button {
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  border: none;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.quote-button:hover {
+  background: linear-gradient(90deg, #0056b3, #0099cc);
+  transform: translateY(-2px);
+}
+
+.quote-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Quote box */
+.quote-box {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #34495e;
+  background: #ffffff;
+  border-left: 6px solid #007bff;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+
+/* Error message */
+.error-text {
+  margin-top: 1rem;
+  color: #e74c3c;
+  font-weight: bold;
+}
